@@ -14,7 +14,7 @@ function(context, args) {
         if (t[0] == "d") a[t] = i++
         if (t[0] == "e") a[t] = o.p[i++]
         if (t[0] == "c") { // c00x
-            a[t] = c[i++]
+            a[t] = o.c[i++]
             if (t[3] == "1") a.color_digit = a[t].length
             if (t[3] == "2") a.c002_complement = o.c[(i + 3) % 8]
             if (t[3] == "3") { // c003
