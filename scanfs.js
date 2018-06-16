@@ -1,20 +1,20 @@
 function(context, args) {
 	var r = #fs.scripts.fullsec()
-	var o = [] 
+	var n = #fs.users.last_action({ name: "gibson"})[0].t.getTime()
 	var g = []
-	var on = #db.f({ n: "f" }).first().i
-	var n = #fs.users.last_action({ name: "gibson"})//.t.getTime()
-// 	if (on + 5 > r.length) on = 0
-// 	for (var i = on; i < on + 5; i++) {
-// 		#ms.chats.join({name: r[i]})
-// 		var s = #fs.scripts.fullsec({sector: r[i]})
-// 		#ms.chats.leave({channel: r[i]})
-// 		for (var j = 0; j < s.length; j++) {
-// //			if(#fs.users.last_action({ name: s[j].split(".")[0] }).t.getTime() === n) g.push(s[j])
-// 		}
-// 		o.push(...g)
-// 	}
-// 	#db.u({ n: "f" },{$set:{"i":(on + 5)}})
-// 	#db.u({ n: "f" },{$addToSet:{"v":{$each:o}}})
-	return n
+	var i = #db.f({ _id: "f" }).first().i
+	if (i + 5 > r.length) i = 0
+	var e = i + 5
+	while (i < e) {
+		#ms.chats.join({name: r[i]})
+		var f = #fs.scripts.fullsec({sector: r[i]})
+		#ms.chats.leave({channel: r[i]})
+		for (var j = 0; j < f.length; j++) {
+			if(#fs.users.last_action({ name: f[j].split(".")[0] })[0].t.getTime() === n) g.push(f[j])
+		}
+		i++
+	}
+	#db.u({ _id: "f" },{$set:{"i":e}})
+	#db.u({ _id: "f" },{$addToSet:{"v":{$each:g}}})
+	return g
 }

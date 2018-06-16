@@ -1,18 +1,29 @@
 function(context, args) {
-    var security = #fs.scripts.get_level({ name: args.t.name })
-    if (security === 4) {
-        var solution = {}
-        var wl = {n:"0"}
-        do{
-            var response = args.t.call(solution)
-            if(respons.indexof("nuutec l0cket")!==-1){
-                if(wl.n!=="l0cket"){
-                    wl = #db.f({n:"l0cket"}).first()
-                }
-                
+    var l = args.l
+    var o = #db.f({ _id: "l" }).first()
+    var t = " "
+    var a = {}
+    var r = l.call(a);
+    do {
+        var m = r.match(/`N(\w+)`.*$/)
+        if (m) {
+            t = m[1]
+            var i = 0
+        }
+        if (t[0] == "E") a[t] = o.v[i++]
+        if (t[0] == "d") a[t] = i++
+        if (t[0] == "e") a[t] = o.p[i++]
+        if (t[0] == "c") { // c00x
+            a[t] = c[i++]
+            if (t[3] == "1") a.color_digit = a[t].length
+            if (t[3] == "2") a.c002_complement = o.c[(i + 3) % 8]
+            if (t[3] == "3") { // c003
+                a.c003_triad_1 = o.c[(i + 6) % 8]
+                a.c003_triad_2 = o.c[i]
             }
-
-        }while(args.t.call(solution).indexof("LOCK_ERROR")===-1)
-    }
-    return ("done")
+        }
+        if (t[0] == "l") a[t] = o.l[i++]
+        r = l.call(a);
+    } while (!r.match(/terminated/));
+    return a
 }
